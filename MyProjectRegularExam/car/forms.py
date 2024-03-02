@@ -9,3 +9,9 @@ class CreateCarForm(forms.ModelForm):
         exclude = ['owner',]
         fields = ['type', 'model', 'year', 'image_url', 'price']
 
+        widgets = {
+            'image_url': forms.URLInput(
+                attrs={'placeholder': "https://..."}
+            )
+        }
+

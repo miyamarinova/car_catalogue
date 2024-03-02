@@ -5,7 +5,7 @@
 
      <section id="catalogue">
       {% if cars %}
-            <h1>Total cars: 4</h1>
+            <h1>Total cars: {{ cars.count }}</h1>
       {% else %}
             <p class="no-articles">No cars yet</p>
       {% endif %}
@@ -24,7 +24,7 @@
           <h1>{{ car.model }}</h1>
           <div class="details-buttons">
             <!-- car details button -->
-            <a href="#" class="details-btn">Details</a>
+            <a href="{% url 'detail_car' pk=car.pk %}" class="details-btn">Details</a>
           </div>
         </div>
       {% endfor %}

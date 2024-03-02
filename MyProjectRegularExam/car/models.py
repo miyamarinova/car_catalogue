@@ -16,12 +16,17 @@ class Car(models.Model):
     MIN_LENGTH_MODEL = 1
     MIN_PRICE = 1.0
 
+    MIN_YEAR = 1999
+    MAX_YEAR = 2030
+
+    ERROR_MESSAGE_YEAR = f"Year must be between {MIN_YEAR} and {MAX_YEAR}!"
+
     CAR_TYPES = {
-        "_RALLY": "Rally",
-        "OPEN_WHEEL": "Open-wheel",
-        "KART": "Kart",
-        "DRAG": "Drag",
-        "OTHER": "Other"
+        "Rally": "Rally",
+        "Open Wheel": "Open-wheel",
+        "Kart": "Kart",
+        "Drag": "Drag",
+        "Other": "Other"
     }
 
     type = models.CharField(
@@ -38,16 +43,17 @@ class Car(models.Model):
         validators=[MinLengthValidator(MIN_LENGTH_MODEL)]
     )
 
-    year = models.PositiveIntegerField(
+    year = models.IntegerField(
+        validators=(MaxValueValidator(MAX_YEAR, message=ERROR_MESSAGE_YEAR),
+                    MinValueValidator(MIN_YEAR, message=ERROR_MESSAGE_YEAR),),
         null=False,
         blank=False,
-        validators=[validate_year, MinValueValidator(1999), MaxValueValidator(2030)]
     )
 
     image_url = models.URLField(
         null=False,
         blank=False,
-        default="https://...",
+
         error_messages={
             'unique': "This image URL is already in use! Provide a new one."
         }
