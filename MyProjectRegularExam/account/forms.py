@@ -7,9 +7,18 @@ class CreateProfileForm(forms.ModelForm):
         widget=forms.PasswordInput(attrs={'placeholder': 'Enter your password'}),
         max_length=Profile.MAX_PASSWORD_LENGTH,
     )
-
     class Meta:
         model = Profile
         fields = ['username', 'email', 'age', 'password']
 
+
+class EditProfileForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = '__all__'
+
+class DeleteProfileForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = '__all__'
 

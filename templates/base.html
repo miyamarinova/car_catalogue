@@ -24,7 +24,7 @@
             {% else %}
                 <a href="{% url "catalogue" %}">Catalogue</a>
                 <a href="{% url 'create_car' %}">Create Car</a>
-                <a href="">Profile</a>
+                <a href="{% url 'detail_profile' %}">Profile</a>
             {% endif %}
         </nav>
     </header>
